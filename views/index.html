@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>FilesOnTheGo</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-teal.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+        <!-- CUSTOM CSS -->
+        <link rel="stylesheet" type="text/css" href="../../index.css">
+    </head>
+    <body>
+        <!-- <div class="container"> -->
+            <div class="w3-bar w3-theme w3-xlarge">
+                <a class="w3-bar-item w3-button" href="#"><i class="fa fa-bars"></i></a>
+                <span class="w3-bar-item">File Upload</span>
+                <a class="w3-bar-item w3-button w3-right" href="#"><i class="fa fa-search"></i></a>
+              </div>
+          <form style="margin:32px" class="upload-form" action="upload" method="post" enctype="multipart/form-data">
+            <input style="margin:8px" class="waves-effect waves-light btn" type="file" name="uploaded_file" value="Browse...">
+            <input style="margin:8px" class="waves-effect waves-light btn" type="submit" name="upload-btn" value="UPLOAD">
+          </form>
+        <!-- </div> -->
+        <ul>
+            {% for file in files %}
+                <li> <a href="{{ file.index }}" download>{{ file.name }}</a></li>
+            {% endfor %}
+        </ul>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    </body>
+</html>
