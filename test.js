@@ -36,11 +36,11 @@ app.get('/', function (req,res) {
 
 var regex = /^\/files\/\S+$/;   // /^\S+$/;
 app.get(regex, function (req,res) {
-    // let url = req.url;
-    // console.log(url);
-    // url = url.split('/');
-    // console.log(url);
-    // url = url[2];
+    let local_url = req.url;
+    console.log(local_url);
+    local_url = local_url.split('/');
+    console.log(local_url);
+    url = local_url[local_url.indexOf('files')+1];
     console.log('url is: '+url);
     let files = [];
     fs.readdir(path.join(__dirname,'uploads',url), function (err, fileArray) {
