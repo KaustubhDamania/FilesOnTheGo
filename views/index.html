@@ -26,10 +26,14 @@
         <div class="card" style="width: 18rem;">
             <div class="card-header">Uploads</div>
             <ul class="list-group list-group-flush" id="links">
-                {% for file in files %}
-                    <!-- <a href="{{ file.index }}" download>{{ file.name }}</a> -->
-                    <a href="/uploads/{{ url }}/{{ file }}" download>{{ file }}</a>
-                {% endfor %}
+                {% if files %}
+                    {% for file in files %}
+                        <!-- <a href="{{ file.index }}" download>{{ file.name }}</a> -->
+                        <a href="/uploads/{{ url }}/{{ file }}" download>{{ file }}</a>
+                    {% endfor %}
+                {% else %}
+                    <h6>Nothing here, upload some files!</h6>
+                {% endif %}
             </ul>
         </div>
     </div>
