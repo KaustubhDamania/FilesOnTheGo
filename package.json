@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "mkdir uploads || node test.js",
+    "start": "mkdir uploads || node index.js",
     "test": "mkdir uploads || node test.js || sudo fuser -k 3000/tcp"
   },
   "author": "",
