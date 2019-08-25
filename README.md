@@ -1,6 +1,6 @@
 # FilesOnTheGo
 
-Make sure to have npm and MongoDB installed.
+Make sure to have npm installed.
 
 Run the following commands:
 - npm install
