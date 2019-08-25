@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon",
-    "test": "mkdir uploads || node test.js"
+    "test": "mkdir uploads || node test.js || sudo fuser -k 3000/tcp"
   },
   "author": "",
   "license": "ISC",

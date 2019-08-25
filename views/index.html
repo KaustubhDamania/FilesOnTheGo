@@ -26,7 +26,8 @@
         <!-- </div> -->
         <ul>
             {% for file in files %}
-                <li> <a href="{{ file.index }}" download>{{ file.name }}</a></li>
+                <!-- <li> <a href="{{ file.index }}" download>{{ file.name }}</a></li> -->
+                <li> <a href="/uploads/{{ url }}/{{ file }}" download>{{ file }}</a></li>
             {% endfor %}
         </ul>
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>

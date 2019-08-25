@@ -16,14 +16,14 @@ function randomStr(length){
 const db_url = 'mongodb://127.0.0.1:27017';
 const db_name = 'mydb';
 
-MongoClient.connect(db_url, function (err, db){
-    if(err) {
-        console.log(err);
-        return;
-    }
-    console.log('Connected to MongoDB!');
-    db.close();
-});
+// MongoClient.connect(db_url, function (err, db){
+//     if(err) {
+//         console.log(err);
+//         return;
+//     }
+//     console.log('Connected to MongoDB!');
+//     db.close();
+// });
 
 var app = express();
 app.use(fileUploader());
@@ -31,6 +31,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.set('view engine', 'nunjucks');
 // app.set('views', path.join(__dirname, 'views'));
+app.use('/uploads',express.static(path.join(__dirname, 'uploads')));
 app.use(express.static(path.join(__dirname, 'public')));
 nunjucks.configure('views', {
     autoescape: true,
@@ -41,39 +42,54 @@ var port = 3000;
 
 app.get('/', function (req,res) {
     let url = randomStr(lengthUrl);
-    // res.redirect(`/files/${url}`);
-    res.redirect(`/${url}`)
+    res.redirect(`/files/${url}`);
+    // res.redirect(`${url}`)
 });
 
-var regex = /^\S+$/;
+var regex = /^\/files\/\S+$/;   // /^\S+$/;
 app.get(regex, function (req,res) {
     let url = req.url;
-    url = url.slice(url.length-lengthUrl,url.length);
+    console.log(url);
+    // url = url.slice(url.length-lengthUrl,url.length);
+    url = url.split('/');
+    console.log(url);
+    url = url[2];
     console.log('url is: '+url);
     let files = [];
-    MongoClient.connect(db_url, function (err, db){
-        if(err) {
-            console.log(err);
-            return;
-        }
-        db.db(db_name).collection(url).find()
-        .toArray(function (err, fileArray) {
-            if (err) {
-                console.log(err);
-            }
-            console.log('Files are:');
-            console.log(fileArray);
-            res.render('index.html',{
-                files: fileArray
-            });
+    // MongoClient.connect(db_url, function (err, db){
+    //     if(err) {
+    //         console.log(err);
+    //         return;
+    //     }
+    //     db.db(db_name).collection(url).find()
+    //     .toArray(function (err, fileArray) {
+    //         if (err) {
+    //             console.log(err);
+    //         }
+    //         console.log('Files are:');
+    //         console.log(fileArray);
+    //         res.render('index.html',{
+    //             files: fileArray
+    //         });
+    //     });
+    //     return;
+    // });
+    fs.readdir(path.join(__dirname,'uploads',url), function (err, fileArray) {
+        files = fileArray;
+        console.log('Files found are:\n'+files);
+        res.render('index.html',{
+            files: files,
+            url: url
         });
-        return;
     });
+
 });
 
 app.post('/upload', function (req, res) {
     let url = req.headers.referer;
-    url = url.slice(url.length-lengthUrl,url.length);
+    // url = url.slice(url.length-lengthUrl,url.length);
+    url = url.split('/')
+    url = url[2];
     console.log('inside upload, url is: '+url);
     let file = req.files.uploaded_file;
     console.log(Object.keys(file));
@@ -85,20 +101,22 @@ app.post('/upload', function (req, res) {
     });
     let file_location = path.join(__dirname,'uploads',url,file.name);
     file.mv(file_location);
-
-    MongoClient.connect(db_url, function (err, db){
-        if(err) {
-            console.log(err);
-            return;
-        }
-        db.db(db_name).collection(url).insertOne({
-            name: file.name,
-            index: file_location
-        });
-        res.redirect(`${url}`);
-        db.close();
-        return;
-    });
+    file_location = path.join('uploads',url,file.name);
+    res.redirect(`/files/${url}`);
+    // res.redirect(`${url}`);
+    // MongoClient.connect(db_url, function (err, db){
+    //     if(err) {
+    //         console.log(err);
+    //         return;
+    //     }
+    //     db.db(db_name).collection(url).insertOne({
+    //         name: file.name,
+    //         index: file_location
+    //     });
+    //     res.redirect(`${url}`);
+    //     db.close();
+    //     return;
+    // });
 })
 
 app.listen(port, function (req,res) {
