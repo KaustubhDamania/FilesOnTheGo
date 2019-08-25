@@ -1,0 +1,22 @@
+body{
+    background-color: #BCFCFF;
+}
+
+.bg-custom {
+    background-color: #FF0C00;
+}
+
+.form-submit{
+    padding-top: 5%;
+    padding-left: 1%;
+}
+
+.uploaded-files {
+    padding-left: 1%;
+    margin-top: 20px;
+}
+
+#links{
+    margin-left: 10px;
+    margin-top: 10px;
+}
