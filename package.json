@@ -1,10 +1,10 @@
 {
-  "name": "filesbin",
+  "name": "FilesOnTheGo",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon",
+    "start": "mkdir uploads || node test.js",
     "test": "mkdir uploads || node test.js || sudo fuser -k 3000/tcp"
   },
   "author": "",
@@ -12,7 +12,6 @@
   "dependencies": {
     "express": "^4.17.1",
     "express-fileupload": "^1.1.5",
-    "mongodb": "^3.3.0",
     "nodemon": "^1.19.1",
     "nunjucks": "^3.2.0"
   }
