@@ -16,20 +16,9 @@
 
     <div class="form-submit">
         <form class="upload-form" action="upload" method="post" enctype="multipart/form-data">
-            <input type="file" class="btn btn-primary" name="uploaded_file" value="Browse...">
-            <input type="submit" class="btn btn-success" name="upload-btn" value="UPLOAD">
+            Select files: <input type="file" name="myFile" multiple>
+            <input type="submit" value="Upload">
         </form>
-    </div>
-    
-    <div class="uploaded-files">
-        <div class="card" style="width: 18rem;">
-            <div class="card-header">Uploads</div>
-            <ul class="list-group list-group-flush">
-                {% for file in files %}
-                    <a href="{{ file.index }}" download>{{ file.name }}</a>
-                {% endfor %}
-            </ul>
-        </div>
     </div>
 </body>
 </html>
