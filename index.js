@@ -67,6 +67,10 @@ app.post('/upload', function (req, res) {
     res.redirect(`/files/${url}`);
 })
 
-app.listen(port, function (req,res) {
-    console.log(`Listening on port no ${port}`);
+// app.listen(port, function (req,res) {
+//     console.log(`Listening on port no ${port}`);
+// });
+
+app.listen(process.env.PORT || 3000, function(){
+  console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
 });
