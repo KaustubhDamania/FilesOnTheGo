@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "mkdir uploads || node index.js",
-    "test": "mkdir uploads || node test.js || sudo fuser -k 3000/tcp"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
@@ -14,5 +14,8 @@
     "express-fileupload": "^1.1.5",
     "nodemon": "^1.19.1",
     "nunjucks": "^3.2.0"
+  },
+  "engines": {
+    "node": "10.x"
   }
 }

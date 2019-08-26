@@ -37,11 +37,11 @@ app.get('/', function (req,res) {
 var regex = /^\/files\/\S+$/;   // /^\S+$/;
 app.get(regex, function (req,res) {
     let local_url = req.url;
-    console.log(local_url);
+    console.log('Raw URL: '+local_url);
     local_url = local_url.split('/');
-    console.log(local_url);
+    console.log('URL after being split: '+local_url);
     url = local_url[local_url.indexOf('files')+1];
-    console.log('url is: '+url);
+    console.log('URL is: '+url);
     let files = [];
     fs.readdir(path.join(__dirname,'uploads',url), function (err, fileArray) {
         files = fileArray;
@@ -55,7 +55,7 @@ app.get(regex, function (req,res) {
 });
 
 app.post('/upload', function (req, res) {
-    console.log('inside upload, url is: '+url);
+    console.log('In upload route, url is: '+url);
     let file = req.files.uploaded_file;
     fs.mkdir(path.join(__dirname,'uploads',url), function (err) {
         if (err){
@@ -64,7 +64,6 @@ app.post('/upload', function (req, res) {
     });
     let file_location = path.join(__dirname,'uploads',url,file.name);
     file.mv(file_location);
-    file_location = path.join('uploads',url,file.name);
     res.redirect(`/files/${url}`);
 })
 
