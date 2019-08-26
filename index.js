@@ -61,6 +61,9 @@ app.get(regex, function (req,res) {
 });
 
 app.post('/upload', function (req, res) {
+    if(!req.files){
+        return res.status(400).send("No file uploaded");
+    }
     console.log('In upload route, url is: '+url);
     let file = req.files.uploaded_file;
     fs.mkdir(path.join(__dirname,'uploads',url), function (err) {
