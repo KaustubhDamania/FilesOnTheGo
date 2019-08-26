@@ -28,6 +28,12 @@ nunjucks.configure('views', {
 
 var port = 3000;
 
+fs.mkdir(path.join(__dirname,'uploads'), function (err) {
+    if (err){
+        console.log(err);
+    }
+});
+
 app.get('/', function (req,res) {
     url = randomStr(lengthUrl);
     res.redirect(`/files/${url}`);
