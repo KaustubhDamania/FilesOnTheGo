@@ -19,4 +19,38 @@ body{
 #links{
     margin-left: 10px;
     margin-top: 10px;
+    list-style-type: none;
 }
+
+.files {
+    width: 100%;
+    display: flex;
+    /* flex-wrap: wrap; */
+    flex-direction: column;
+}
+
+.each-file {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    flex-basis: 100%;
+    justify-content: space-between;
+}
+/* Jugaad to make it the columns align */
+.url {
+    width: 60%;
+}
+
+.timestamp {
+    /* background-color: green; */
+    width: 60%;
+}
+
+.filesize {
+    /* background-color: red; */
+    width: 5%;
+    margin-right: 1%;
+}
+/* a{
+    margin-right: 40%;
+} */

@@ -37,10 +37,9 @@ fs.mkdir(path.join(__dirname,'uploads'), function (err) {
 app.get('/', function (req,res) {
     url = randomStr(lengthUrl);
     res.redirect(`/files/${url}`);
-    // res.redirect(`${url}`)
 });
 
-var regex = /^\/files\/\S+$/;   // /^\S+$/;
+var regex = /^\/files\/\S+$/;  // /^\S+$/;
 app.get(regex, function (req,res) {
     let local_url = req.url;
     console.log('Raw URL: '+local_url);
@@ -51,7 +50,33 @@ app.get(regex, function (req,res) {
     let files = [];
     fs.readdir(path.join(__dirname,'uploads',url), function (err, fileArray) {
         files = fileArray;
-        console.log('Files found are:\n'+files);
+        if(files !== undefined){
+            for(let i=0; i<files.length; i++){
+                let file = files[i];
+                let stat = fs.statSync(path.join(__dirname,'uploads',url,file));
+                files[i] = {
+                    name: file,
+                    size: stat.size,
+                    ctime: new Date(stat.ctime).toString().
+                            split(' ').slice(0,-2).join(' ')
+                };
+                if(files[i].size > 1024*1024){ //1 MB
+                    files[i].size = `${(files[i].size/(1024*1024)).toFixed(2)} MB`;
+                }
+                else if(files[i].size > 1024){ //1 KB
+                    files[i].size = `${(files[i].size/1024).toFixed(2)} KB`;
+                }
+                else{ // size is in bytes
+                    files[i].size = `${(files[i].size)} B`;
+                }
+                console.log('Time is', files[i].ctime);
+            }
+            console.log('Files found are:\n'+files.map((file) => file.name));
+        }
+        else{
+            console.log('No files found here!');
+        }
+
         res.render('index.html',{
             files: files,
             url: url

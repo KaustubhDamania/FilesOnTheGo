@@ -4,32 +4,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>File Server</title>
+    <title>FilesOnTheGo</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="../../style.css">
 </head>
 <body>
     <div class="navigation-bar">
         <nav class="navbar navbar-dark bg-custom">
-            <a class="navbar-brand" href="#">Files On the Go</a>
+            <a class="navbar-brand" href="#">FilesOnTheGo</a>
         </nav>
     </div>
 
     <div class="form-submit">
-        <form class="upload-form" action="../upload" method="post" enctype="multipart/form-data">
+        <form class="upload-form" action="../../upload" method="post" enctype="multipart/form-data">
             <input type="file" class="btn btn-primary" name="uploaded_file" value="Browse...">
             <input type="submit" class="btn btn-success" name="upload-btn" value="UPLOAD">
         </form>
     </div>
 
     <div class="uploaded-files">
-        <div class="card" style="width: 18rem;">
+        <div class="card" style="width: 99%;">
             <div class="card-header">Uploads</div>
             <ul class="list-group list-group-flush" id="links">
                 {% if files %}
                     {% for file in files %}
                         <!-- <a href="{{ file.index }}" download>{{ file.name }}</a> -->
-                        <a href="/uploads/{{ url }}/{{ file }}" download>{{ file }}</a>
+                        <div class="files">
+                        <li>
+                                <div class="each-file">
+                                    <a class="url" href="/uploads/{{ url }}/{{ file.name }}" download>{{ file.name }}</a>
+                                <!-- </div> -->
+                                <!-- <div class="each-file"> -->
+                                    <span class="timestamp">{{ file.ctime }}</span>
+                                <!-- </div> -->
+                                <!-- <div class="each-file"> -->
+                                    <span class="filesize">{{ file.size }}</span>
+                                <!-- </div> -->
+                                    <!-- <div>3rd October 2019<div> -->
+                                </div>
+                        </li>
+                        </div>
                     {% endfor %}
                 {% else %}
                     <h6>Nothing here, upload some files!</h6>
