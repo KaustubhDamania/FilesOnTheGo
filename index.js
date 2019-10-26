@@ -58,7 +58,7 @@ app.get(regex, function (req,res) {
                     name: file,
                     size: stat.size,
                     ctime: new Date(stat.ctime).toString().
-                            split(' ').slice(0,-2).join(' ')
+                            split(' ').slice(0,5).join(' ')
                 };
                 if(files[i].size > 1024*1024){ //1 MB
                     files[i].size = `${(files[i].size/(1024*1024)).toFixed(2)} MB`;
