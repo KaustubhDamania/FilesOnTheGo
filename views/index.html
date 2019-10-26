@@ -27,24 +27,20 @@
             <div class="card-header">Uploads</div>
             <ul class="list-group list-group-flush" id="links">
                 {% if files %}
-                    {% for file in files %}
-                        <!-- <a href="{{ file.index }}" download>{{ file.name }}</a> -->
-                        <div class="files">
-                        <li>
-                                <div class="each-file">
-                                    <a class="url" href="/uploads/{{ url }}/{{ file.name }}" download>{{ file.name }}</a>
-                                <!-- </div> -->
-                                <!-- <div class="each-file"> -->
-                                    <span class="timestamp">{{ file.ctime }}</span>
-                                <!-- </div> -->
-                                <!-- <div class="each-file"> -->
-                                    <span class="filesize">{{ file.size }}</span>
-                                <!-- </div> -->
-                                    <!-- <div>3rd October 2019<div> -->
-                                </div>
-                        </li>
-                        </div>
-                    {% endfor %}
+                    <!-- <div class="files"> -->
+                        {% for file in files %}
+                            <li>
+                                    <div class="each-file">
+                                        <!-- <a href="/uploads/{{ url }}/{{ file.name }}" download>{{ file.name }}</a>
+                                        <span>{{ file.ctime }}</span>
+                                        <span>{{ file.size }}</span> -->
+                                        <div class="url"><a href="/uploads/{{ url }}/{{ file.name }}" download>{{ file.name }}</a></div>
+                                        <div class="timestamp"><span>{{ file.ctime }}</span></div>
+                                        <div class="filesize"><span>{{ file.size }}</span></div>
+                                    </div>
+                            </li>
+                        {% endfor %}
+                    <!-- </div> -->
                 {% else %}
                     <h6>Nothing here, upload some files!</h6>
                 {% endif %}
