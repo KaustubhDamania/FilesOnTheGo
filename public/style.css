@@ -49,7 +49,15 @@ body{
         flex: 1;
     }
 
+    .each-file > .timestamp {
+        margin-left: 5%;
+    }
+
     .each-file > .filesize {
         margin-left: 5%;
+    }
+
+    .btn-success{
+        margin-top: 5%;
     }
 }
