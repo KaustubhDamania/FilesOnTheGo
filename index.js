@@ -5,7 +5,7 @@ const nunjucks = require('nunjucks');
 var bodyParser = require('body-parser');
 const fileUploader = require('express-fileupload');
 const lengthUrl = 5;
-var url = '';
+// var url = '';
 
 function randomStr(length){
     let randomNum = Math.random();
@@ -35,7 +35,7 @@ fs.mkdir(path.join(__dirname,'uploads'), function (err) {
 });
 
 app.get('/', function (req,res) {
-    url = randomStr(lengthUrl);
+    let url = randomStr(lengthUrl);
     res.redirect(`/files/${url}`);
 });
 
@@ -45,7 +45,7 @@ app.get(regex, function (req,res) {
     console.log('Raw URL: '+local_url);
     local_url = local_url.split('/');
     console.log('URL after being split: '+local_url);
-    url = local_url[local_url.indexOf('files')+1];
+    let url = local_url[local_url.indexOf('files')+1];
     console.log('URL is: '+url);
     let files = [];
     fs.readdir(path.join(__dirname,'uploads',url), function (err, fileArray) {
@@ -89,6 +89,8 @@ app.post('/upload', function (req, res) {
     if(!req.files){
         return res.status(400).send("No file uploaded");
     }
+    let url = req.headers.referer.split('/files/')[1];
+    console.log('req is',req.headers.referer);
     console.log('In upload route, url is: '+url);
     let file = req.files.uploaded_file;
     fs.mkdir(path.join(__dirname,'uploads',url), function (err) {
