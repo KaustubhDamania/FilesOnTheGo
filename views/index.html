@@ -7,6 +7,9 @@
     <title>FilesOnTheGo</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="../../style.css">
+    <link rel="stylesheet" type="text/css" href="../../dropzone.css">
+    <link rel="stylesheet" type="text/css" href="../../basic.css">
+    <script src="../../dropzone.js"></script>
 </head>
 <body>
     <div class="navigation-bar">
@@ -16,35 +19,51 @@
     </div>
 
     <div class="form-submit">
-        <form class="upload-form" action="../../upload" method="post" enctype="multipart/form-data">
-            <input type="file" class="btn btn-primary" name="uploaded_file" value="Browse...">
-            <input type="submit" class="btn btn-success" name="upload-btn" value="UPLOAD">
+        <!-- <form class="upload-form mobile-upload" action="../../upload" method="post" enctype="multipart/form-data">
+            <input type="file" class="btn btn-primary mobile-upload" name="uploaded_file" value="Browse..." multiple>
+            <input type="submit" class="btn btn-success mobile-upload" name="upload-btn" value="UPLOAD">
+        </form> -->
+        <form action="../../upload" method="post" class="dropzone desktop-upload" enctype="multipart/form-data">
+            <!-- <input type="file" class="dz-hidden-input" name="file" multiple/> -->
+            <div class="dz-message needsclick">
+                Drop files here or click to upload.<br>
+            </div>
         </form>
     </div>
 
     <div class="uploaded-files">
-        <div class="card" style="width: 99%;">
+        <div class="card">
             <div class="card-header">Uploads</div>
-            <ul class="list-group list-group-flush" id="links">
+            <!-- <ul class="list-group list-group-flush" id="links">
                 {% if files %}
-                    <!-- <div class="files"> -->
                         {% for file in files %}
                             <li>
                                     <div class="each-file">
-                                        <!-- <a href="/uploads/{{ url }}/{{ file.name }}" download>{{ file.name }}</a>
-                                        <span>{{ file.ctime }}</span>
-                                        <span>{{ file.size }}</span> -->
                                         <div class="url"><a href="/uploads/{{ url }}/{{ file.name }}" download>{{ file.name }}</a></div>
                                         <div class="timestamp"><span>{{ file.ctime }}</span></div>
                                         <div class="filesize"><span>{{ file.size }}</span></div>
                                     </div>
                             </li>
                         {% endfor %}
-                    <!-- </div> -->
                 {% else %}
                     <h6>Nothing here, upload some files!</h6>
                 {% endif %}
-            </ul>
+            </ul> -->
+            <div class="grid-container">
+                {% if files %}
+                        {% for file in files %}
+                            <!-- <li> -->
+                            <!-- <div class="each-file"> -->
+                            <div class="grid-item"><a href="/uploads/{{ url }}/{{ file.name }}" download>{{ file.name }}</a></div>
+                            <div class="grid-item"><span>{{ file.ctime }}</span></div>
+                            <div class="grid-item"><span>{{ file.size }}</span></div>
+                            <!-- </div> -->
+                            <!-- </li> -->
+                        {% endfor %}
+                {% else %}
+                    <h6>Nothing here, upload some files!</h6>
+                {% endif %}
+            </div>
         </div>
     </div>
 </body>

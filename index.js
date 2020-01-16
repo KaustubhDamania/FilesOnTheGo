@@ -13,6 +13,12 @@ function randomStr(length){
     return base36string.substring(2, 2+length);
 }
 
+// TODO: Get list of files from given url
+// Then extend it as a POST route to fetch files real time
+// function getFiles(url){
+//
+// }
+
 var app = express();
 app.use(fileUploader());
 app.use(bodyParser.json());
@@ -76,7 +82,6 @@ app.get(regex, function (req,res) {
         else{
             console.log('No files found here!');
         }
-
         res.render('index.html',{
             files: files,
             url: url
@@ -92,14 +97,30 @@ app.post('/upload', function (req, res) {
     let url = req.headers.referer.split('/files/')[1];
     console.log('req is',req.headers.referer);
     console.log('In upload route, url is: '+url);
-    let file = req.files.uploaded_file;
-    fs.mkdir(path.join(__dirname,'uploads',url), function (err) {
-        if (err){
-            console.log(err);
+    console.log('Files are',req.files);
+    let files = req.files.uploaded_file;
+    if(Array.isArray(files)){
+        for(let i=0; i<files.length; i++){
+            let file = files[i];
+            fs.mkdir(path.join(__dirname,'uploads',url), function (err) {
+                if (err){
+                    console.log(err);
+                }
+            });
+            let file_location = path.join(__dirname,'uploads',url,file.name);
+            file.mv(file_location);
         }
-    });
-    let file_location = path.join(__dirname,'uploads',url,file.name);
-    file.mv(file_location);
+    }
+    else{
+        let file = req.files.file;
+        fs.mkdir(path.join(__dirname,'uploads',url), function (err) {
+            if (err){
+                console.log(err);
+            }
+        });
+        let file_location = path.join(__dirname,'uploads',url,file.name);
+        file.mv(file_location);
+    }
     res.redirect(`/files/${url}`);
 })
 

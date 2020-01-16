@@ -16,6 +16,38 @@ body{
     margin-top: 20px;
 }
 
+.grid-container{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    padding: 10px;
+}
+
+.grid-item{
+    text-align: center;
+    padding: 10px;
+    vertical-align: middle;
+}
+
+.mobile-upload{
+    display: none !important;
+}
+
+.dropzone {
+    border: 2px dashed #0087F7 !important;
+    border-radius: 5px !important;
+    background: white !important;
+    /* width: 99%; */
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.card{
+    /* width: 99%; */
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+/*
 #links{
     margin-left: 10px;
     margin-top: 10px;
@@ -26,7 +58,7 @@ body{
     display: flex;
 }
 
-@media (min-width:600px)  { /* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */
+@media (min-width:600px)  {
 
     .each-file > div {
         flex: 1;
@@ -42,9 +74,9 @@ body{
         flex: 1;
     }
 }
-
-@media (max-width:600px)  { /* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */
-
+*/
+@media (max-width:600px)  {
+/*
     .each-file > div {
         flex: 1;
     }
@@ -56,8 +88,27 @@ body{
     .each-file > .filesize {
         margin-left: 5%;
     }
-
-    .btn-success{
+*/
+    /* .btn-success{
         margin-top: 5%;
+    }
+
+    .mobile-upload{
+        display: inline;
+    } */
+
+    /* .desktop-upload{
+        display: none;
+    } */
+    .dropzone {
+        /* width: 99%; */
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+
+    .card{
+        /* width: 99%; */
+        margin-left: 15px;
+        margin-right: 15px;
     }
 }
