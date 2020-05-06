@@ -1,5 +1,7 @@
 # FilesOnTheGo
+Like notepad.pw, one can store their files at a custom route and download it later by visiting that route and clicking on file URL.<br>
 
+### Installation
 Make sure to have npm installed.
 
 Run the following commands:
