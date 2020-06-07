@@ -56,6 +56,9 @@ app.get(regex, function (req,res) {
     let files = [];
     fs.readdir(path.join(__dirname,'uploads',url), function (err, fileArray) {
         files = fileArray;
+        if(files=='' || !files){
+            files = undefined;
+        }
         if(files !== undefined){
             for(let i=0; i<files.length; i++){
                 let file = files[i];
