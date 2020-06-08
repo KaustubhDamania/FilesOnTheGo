@@ -111,7 +111,9 @@ app.post('/upload', function (req, res) {
                 }
             });
             let file_location = path.join(__dirname,'uploads',url,file.name);
-            file.mv(file_location);
+            fs.writeFile(file_location, file.data, function (err) {
+                console.log(err);
+            });            
         }
     }
     else{
@@ -122,7 +124,10 @@ app.post('/upload', function (req, res) {
             }
         });
         let file_location = path.join(__dirname,'uploads',url,file.name);
-        file.mv(file_location);
+        // file.mv(file_location);
+        fs.writeFile(file_location, file.data, function (err) {
+            console.log(err);
+        });
     }
     res.redirect(`/files/${url}`);
 })
