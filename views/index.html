@@ -50,14 +50,14 @@
                     <h6>Nothing here, upload some files!</h6>
                 {% endif %}
             </ul> -->
-            <div class="grid-container">
+            <div class="grid-container" id="grid">
                 {% if files %}
                         {% for file in files %}
                             <!-- <li> -->
                             <!-- <div class="each-file"> -->
-                            <div class="grid-item"><a href="/uploads/{{ url }}/{{ file.name }}" download>{{ file.name }}</a></div>
-                            <div class="grid-item"><span>{{ file.ctime }}</span></div>
-                            <div class="grid-item"><span>{{ file.size }}</span></div>
+                            <div class="grid-item file-name"><a href="/uploads/{{ url }}/{{ file.name }}" download>{{ file.name }}</a></div>
+                            <div class="grid-item file-date"><span>{{ file.ctime }}</span></div>
+                            <div class="grid-item file-size"><span>{{ file.size }}</span></div>
                             <!-- </div> -->
                             <!-- </li> -->
                         {% endfor %}
