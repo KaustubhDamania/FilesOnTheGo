@@ -14,11 +14,12 @@ body{
 .uploaded-files {
     padding-left: 1%;
     margin-top: 20px;
+    margin-bottom: 25px;
 }
 
 .grid-container{
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: 50% 30% 20%;
     padding: 10px;
 }
 
