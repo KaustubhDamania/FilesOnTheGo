@@ -15,7 +15,7 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
-    "express-fileupload": "^1.1.5",
+    "express-fileupload": "^1.1.10",
     "nunjucks": "^3.2.0"
   },
   "engines": {
