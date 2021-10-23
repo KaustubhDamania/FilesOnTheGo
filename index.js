@@ -19,8 +19,24 @@ function randomStr(length){
 //
 // }
 
+
+fs.mkdir(path.join(__dirname, 'uploads'), function (err) {
+    if (err){
+        console.log(err);
+    }
+});
+
+fs.mkdir(path.join(__dirname, 'tmp'), function (err) {
+    if (err){
+        console.log(err);
+    }
+});
+
 var app = express();
-app.use(fileUploader());
+app.use(fileUploader({
+    useTempFiles : true,
+    tempFileDir : './tmp/'
+}));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.set('view engine', 'nunjucks');
@@ -32,11 +48,6 @@ nunjucks.configure('views', {
     express: app
 });
 
-fs.mkdir(path.join(__dirname,'uploads'), function (err) {
-    if (err){
-        console.log(err);
-    }
-});
 
 app.get('/', function (req,res) {
     let url = randomStr(lengthUrl);
