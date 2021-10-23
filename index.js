@@ -32,8 +32,6 @@ nunjucks.configure('views', {
     express: app
 });
 
-var port = 3000;
-
 fs.mkdir(path.join(__dirname,'uploads'), function (err) {
     if (err){
         console.log(err);
@@ -50,7 +48,6 @@ app.get(regex, function (req,res) {
     let local_url = req.url;
     console.log('Raw URL: '+local_url);
     local_url = local_url.split('/');
-    console.log('URL after being split: '+local_url);
     let url = local_url[local_url.indexOf('files')+1];
     console.log('URL is: '+url);
     let files = [];
@@ -126,17 +123,12 @@ app.post('/upload', function (req, res) {
         });
         let file_location = path.join(__dirname,'uploads',url,file.name);
         file.mv(file_location);
-        // fs.writeFile(file_location, file.data, function (err) {
-        //     console.log(err);
-        // });
     }
     res.redirect(`/files/${url}`);
 })
 
-// app.listen(port, function (req,res) {
-//     console.log(`Listening on port no ${port}`);
-// });
+let port = process.env.PORT || 3000
 
-app.listen(process.env.PORT || 3000, function(){
+app.listen(port, function(){
   console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
 });
