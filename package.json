@@ -3,19 +3,26 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "container_name": "fotg-container",
   "scripts": {
     "start": "node index.js",
-    "test": "nodemon index.js && sudo fuser -k 3000/tcp"
+    "test": "nodemon index.js",
+    "docker:build": "docker build -t fotg .",
+    "docker:run": "cross-env docker run -d -p 3000:3000 --name ${npm_package_container_name} --volume $(pwd):/src fotg:v1",
+    "docker:stop": "cross-env docker stop ${npm_package_container_name}"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
     "express-fileupload": "^1.1.5",
-    "nodemon": "^1.19.3",
     "nunjucks": "^3.2.0"
   },
   "engines": {
     "node": "10.x"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "nodemon": "^1.19.4"
   }
 }
