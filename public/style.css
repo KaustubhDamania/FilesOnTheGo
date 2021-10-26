@@ -77,6 +77,12 @@
     font-size: 20px;
 }
 
+.copy-to-clipboard {
+    border: none;
+    background: none;
+}
+
+
 /*
 #links{
     margin-left: 10px;

@@ -11,6 +11,35 @@ function getSize(size) {
     return size;
 }
 
+
+let tooltipSelector = $('[data-toggle="tooltip"]')
+tooltipSelector.tooltip()
+
+function copyToClipboard(text) {
+    navigator.clipboard.writeText(text);
+}
+
+let copyToClipboardBtn = document.getElementsByClassName('copy-to-clipboard')[0]
+let originalCopyMessage = 'Copy to clipboard'
+let messageOnCopy = '🎉 copied'
+
+
+copyToClipboardBtn.addEventListener('click', () => {
+    copyToClipboard(window.location.href)
+    tooltipSelector.attr('title', messageOnCopy)
+        .attr('data-original-title', messageOnCopy)
+        .tooltip('update')
+        .tooltip('show');
+    setTimeout(() => {
+        tooltipSelector.tooltip('hide')
+        tooltipSelector.attr('title', originalCopyMessage)
+        .attr('data-original-title', originalCopyMessage)
+        .tooltip('update')
+    }, 2000)
+})
+
+
+
 Dropzone.options.upload = {
     maxFilesize: 102400,
     timeout: 1/0,
