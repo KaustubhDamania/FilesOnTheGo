@@ -1,10 +1,26 @@
-body{
-    background-color: #BCFCFF;
+.bg-custom, body {
+    background: #5B84FE;
 }
 
-.bg-custom {
-    background-color: #FF0C00;
+.room-code-container {
+    padding: 5px 20px 5px 20px;
+    background: lightyellow;
+    border-radius: 10px;
+    font-weight: bold;
 }
+
+.room-code {
+    background: transparent;
+    border-bottom: 1px dashed black;
+    /* border: 1px solid black; */
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    font-weight: bold;
+    text-align: center;
+    width: 9ch;
+}
+
 
 .form-submit{
     padding-top: 5%;
@@ -21,6 +37,8 @@ body{
     display: grid;
     grid-template-columns: 50% 30% 20%;
     padding: 10px;
+    border-radius: 10px 10px 0px 0px;
+
 }
 
 .grid-item{
@@ -46,6 +64,17 @@ body{
     /* width: 99%; */
     margin-left: 50px;
     margin-right: 50px;
+    border: none;
+}
+
+.card-header {
+    background: #7ADE84;
+    border-radius: 10px 10px 0px 0px;
+}
+
+.dz-message {
+    font-weight: bold;
+    font-size: 20px;
 }
 
 /*
@@ -76,7 +105,7 @@ body{
     }
 }
 */
-@media (max-width:600px)  {
+@media (max-width: 800px)  {
 /*
     .each-file > div {
         flex: 1;
@@ -111,5 +140,11 @@ body{
         /* width: 99%; */
         margin-left: 15px;
         margin-right: 15px;
+    }
+
+    .navbar {
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 }
