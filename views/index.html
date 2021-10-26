@@ -15,7 +15,14 @@
 <body>
     <div class="navigation-bar">
         <nav class="navbar navbar-dark bg-custom">
-            <a class="navbar-brand" href="/">FilesOnTheGo</a>
+            <a class="navbar-brand" href="/">
+                <img src="/fotg_logo.png" style="height: 60px;">
+            </a>
+            <div class="room-code-container">
+                Room Code:
+                <input class="room-code" placeholder="{{ url }}" value="{{ url }}" >
+            </div>
+
         </nav>
     </div>
 
@@ -27,7 +34,7 @@
         <form action="../../upload" id="upload" method="post" class="dropzone desktop-upload" enctype="multipart/form-data">
             <!-- <input type="file" class="dz-hidden-input" name="file" multiple/> -->
             <div class="dz-message needsclick">
-                Drop files here or click to upload.<br>
+                Drop files here or click to upload 🚀<br>
             </div>
         </form>
     </div>
